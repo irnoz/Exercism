@@ -1,10 +1,7 @@
 func protectSecret(_ secret: String, withPassword password: String) -> (String) -> String {
     func checkPassword(_ possiblePassword: String) -> String {
-        if possiblePassword == password {
-            return secret
-        } else {
-            return "Sorry. No hidden secrets here."
-        }
+        guard password == possiblePassword else { return "Sorry. No hidden secrets here." }
+        return secret
     }
     return checkPassword
 }
