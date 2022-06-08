@@ -3,7 +3,7 @@ import XCTest
 @testable import HighScoreBoard
 
 final class HighScoreBoardTests: XCTestCase {
-  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "false"]) ?? false
+  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "true"]) ?? false
 
   func testEmptyScores() {
     XCTAssertEqual(newScoreBoard(), [String: Int]())
