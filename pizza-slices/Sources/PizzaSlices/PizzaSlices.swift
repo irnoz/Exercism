@@ -10,35 +10,10 @@ func biggestSlice(
   diameterA: String, slicesA: String,
   diameterB: String, slicesB: String
 ) -> String {
+    // giving default values in case of nil
+    let sliceA: Double = sliceSize(diameter: Double(diameterA), slices: Int(slicesA)) ?? -1
+    let sliceB: Double = sliceSize(diameter: Double(diameterB), slices: Int(slicesB)) ?? -1
     
-    // these could be nil
-    var bigger: Double?
-    let areaA = sliceSize(diameter: Double(diameterA), slices: Int(slicesA))
-    let areaB = sliceSize(diameter: Double(diameterB), slices: Int(slicesB))
-    
-    // could also use .some(variabelName) and .none() functions as well
-    switch (areaA, areaB) {
-    case (nil, nil):
-        break
-    case (_, nil):
-        bigger = areaA
-    case (nil, _):
-        bigger = areaB
-    default:
-        if let areaA = areaA, let areaB  = areaB {
-            if areaA > areaB {
-                bigger = areaA
-            } else if areaA < areaB {
-                bigger = areaB
-            }
-        }
-    }
-    
-    if bigger == nil {
-        return "Neither slice is bigger"
-    } else if bigger == areaA {
-        return "Slice A is bigger"
-    } else {
-        return "Slice B is bigger"
-    }
+    if sliceA == sliceB { return "Neither slice is bigger"}
+    return sliceA > sliceB ? "Slice A is bigger" : "Slice B is bigger"
 }
