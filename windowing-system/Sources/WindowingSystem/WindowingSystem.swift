@@ -29,16 +29,22 @@ class Window {
     var contents : String?
     
     func resize(to newSize: Size) -> () {
-        let allowedWidth = self.screenSize.width - self.position.x
-        let allowedHeight = self.screenSize.height - self.position.y
+        let allowedMaxWidth = self.screenSize.width - self.position.x
+        let allowedMaxHeight = self.screenSize.height - self.position.y
 
-        var newWidth: Int = newSize.width <= 1 ? 1 : newSize.width > allowedWidth ? allowedWidth : newSize.width
-        var newHeight: Int = newSize.height <= 1 ? 1 : newSize.height > allowedHeight ? allowedHeight : newSize.height
+        var newWidth: Int = newSize.width <= 1 ? 1 : newSize.width > allowedMaxWidth ? allowedMaxWidth : newSize.width
+        var newHeight: Int = newSize.height <= 1 ? 1 : newSize.height > allowedMaxHeight ? allowedMaxHeight : newSize.height
 
         self.size.resize(newWidth: newWidth, newHeight: newHeight)
     }
     
-    func move(to position: Position) -> () {
+    func move(to newPosition: Position) -> () {
+        let allowedMaxX = self.screenSize.width - self.size.width
+        let allowedMaxY = self.screenSize.height - self.size.height
         
+        var newX: Int = newPosition.x <= 0 ? 0 : newPosition.x > allowedMaxX ? allowedMaxX : newPosition.x
+        var newY: Int = newPosition.y <= 0 ? 0 : newPosition.y > allowedMaxY ? allowedMaxY : newPosition.y
+        
+        self.position.moveTo(newX: newX, newY: newY)
     }
 }
