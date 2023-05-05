@@ -57,7 +57,7 @@ class Window {
     }
     
     func display() -> String {
-        "\(title)\nPosition: (\(position.x), \(position.y)), Size: (\(size.width) x \(size.height))\n\(contents ?? "[This window intentionally left blank]")"
+        "\(title)\nPosition: (\(position.x), \(position.y)), Size: (\(size.width) x \(size.height))\n\(contents ?? "[This window intentionally left blank]")\n"
     }
     
 //    init() {
@@ -68,15 +68,13 @@ class Window {
 //    }
 }
 
-let window = Window()
-
 let mainWindow: Window = {
-    var main = Window()
-    
-    main.update(title: "Main Window")
-    main.resize(to: Size(width: 400, height: 300))
-    main.move(to: Position(x: 100, y: 100))
-    main.update(text: "This is the main window")
-    
-    return main
+    var window = Window()
+
+    window.resize(to: Size(width: 400, height: 300))
+    window.move(to: Position(x: 100, y: 100))
+    window.update(title: "Main Window")
+    window.update(text: "This is the main window")
+
+    return window
 }()
