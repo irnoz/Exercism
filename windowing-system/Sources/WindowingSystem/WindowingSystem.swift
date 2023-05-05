@@ -3,9 +3,9 @@ struct Position {
     var x = 0
     var y = 0
     
-    mutating func moveTo(newX: Int, newY: Int) {
-        self.x = newX
-        self.y = newY
+    mutating func moveTo(newX x: Int, newY y: Int) {
+        self.x = x
+        self.y = y
     }
 }
 
@@ -14,9 +14,9 @@ struct Size {
     var width = 80
     var height = 60
     
-    mutating func resize(with newWidth: Int, and newHeight: Int) {
-        self.width = newWidth
-        self.height = newHeight
+    mutating func resize(newWidth width: Int, newHeight height: Int) {
+        self.width = width
+        self.height = height
     }
 }
 
@@ -28,5 +28,17 @@ class Window {
     var position = Position()
     var contents : String?
     
+    func resize(to newSize: Size) -> () {
+        let allowedWidth = self.screenSize.width - self.position.x
+        let allowedHeight = self.screenSize.height - self.position.y
+
+        var newWidth: Int = newSize.width <= 1 ? 1 : newSize.width > allowedWidth ? allowedWidth : newSize.width
+        var newHeight: Int = newSize.height <= 1 ? 1 : newSize.height > allowedHeight ? allowedHeight : newSize.height
+
+        self.size.resize(newWidth: newWidth, newHeight: newHeight)
+    }
     
+    func move(to position: Position) -> () {
+        
+    }
 }
