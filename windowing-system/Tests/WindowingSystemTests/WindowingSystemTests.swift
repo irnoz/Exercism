@@ -3,7 +3,7 @@ import XCTest
 @testable import WindowingSystem
 
 final class WindowingSystemTests: XCTestCase {
-  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "false"]) ?? false
+  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "true"]) ?? false
 
   func testNewWindow() {
     // This is an example of a functional test case.
