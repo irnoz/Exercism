@@ -1,14 +1,11 @@
+let factors = [(3, "Pling"),(5, "Plang"),(7, "Plong")]
+
 func raindrops(_ number: Int) -> String {
-    var res = ""
+    var result = ""
+    result = factors.reduce("") { (partialResult: String, factorPair: (Int, String)) -> String in
+        partialResult + (number % factorPair.0 == 0 ? factorPair.1 : "")
+    }
     
-    if number >= 3 && number % 3 == 0 {
-        res += "Pling"
-    }
-    if number >= 5 && number % 5 == 0 {
-        res += "Plang"
-    }
-    if number >= 7 && number % 7 == 0 {
-        res += "Plong"
-    }
-    return res.count == 0 ? String(number) : res
+    
+    return result.isEmpty ? String(number) : result
 }
