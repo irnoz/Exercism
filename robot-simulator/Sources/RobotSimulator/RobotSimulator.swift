@@ -1,8 +1,16 @@
 public class SimulatedRobot {
     public enum Bearing: Int {
         case north = 0, east, south, west
+        
+        func rotatedClockwise() -> Bearing {
+            return Bearing(rawValue: (self.rawValue + 1) % 4)!
+        }
+        
+        func rotatedCounterClockwise() -> Bearing {
+            return Bearing(rawValue: (self.rawValue + 3) % 4)!
+        }
     }
-
+    
     struct State {
         var x: Int
         var y: Int
@@ -19,9 +27,9 @@ public class SimulatedRobot {
         commands.forEach { [unowned self] command in
             switch command {
             case "L":
-                self.turnLeft()
+                self.state.bearing = self.state.bearing.rotatedCounterClockwise()
             case "R":
-                self.turnRight()
+                self.state.bearing = self.state.bearing.rotatedClockwise()
             case "A":
                 self.moveForward()
             default:
@@ -30,42 +38,10 @@ public class SimulatedRobot {
         }
     }
     
-    private func turnLeft() {
-        switch state.bearing {
-        case .north:
-            state.bearing = .west
-        case .east:
-            state.bearing = .north
-        case .south:
-            state.bearing = .east
-        case .west:
-            state.bearing = .south
-        }
-    }
-    
-    private func turnRight() {
-        switch state.bearing {
-        case .north:
-            state.bearing = .east
-        case .east:
-            state.bearing = .south
-        case .south:
-            state.bearing = .west
-        case .west:
-            state.bearing = .north
-        }
-    }
-    
     private func moveForward() {
-        switch state.bearing {
-        case .north:
-            state.y += 1
-        case .east:
-            state.x += 1
-        case .south:
-            state.y -= 1
-        case .west:
-            state.x -= 1
-        }
+        let deltas: [(dx: Int, dy: Int)] = [(0, 1), (1, 0), (0, -1), (-1, 0)] // N, E, S, W
+        let delta = deltas[self.state.bearing.rawValue]
+        self.state.x += delta.dx
+        self.state.y += delta.dy
     }
 }
