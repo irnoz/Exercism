@@ -1,18 +1,34 @@
-import Foundation
-
 public struct Robot {
-    public var name: String = String.generateRandomRobotName()
-    
-    public mutating func resetName() {
-        self.name = String.generateRandomRobotName()
+    private static let nameRegistry = RobotNameRegistry()
+    private(set) var name: String
+    init() {
+        name = Robot.nameRegistry.makeUniqueName()
+    }
+    mutating func resetName() {
+        name = Robot.nameRegistry.makeUniqueName()
     }
 }
-
-extension String {
-    public static func generateRandomRobotName() -> String {
-        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let randomLetters = (0..<2).map { _ in String(letters.randomElement()!) }.reduce("", +)
-        let randomNumbers = String(format: "%03d", Int.random(in: 0...999))
-        return randomLetters + randomNumbers
+private final class RobotNameRegistry {
+    private static let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    private static let digits = "0123456789"
+    private var names: Set<String> = []
+    private func makeName() -> String {
+        String(
+            [
+                RobotNameRegistry.letters.randomElement()!,
+                RobotNameRegistry.letters.randomElement()!,
+                RobotNameRegistry.digits.randomElement()!,
+                RobotNameRegistry.digits.randomElement()!,
+                RobotNameRegistry.digits.randomElement()!
+            ]
+        )
+    }
+    func makeUniqueName() -> String {
+        var name: String
+        repeat {
+            name = makeName()
+        } while names.contains(name)
+        names.insert(name)
+        return name
     }
 }
