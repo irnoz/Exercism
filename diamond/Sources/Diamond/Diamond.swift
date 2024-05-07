@@ -15,20 +15,20 @@ class Diamond {
             print("Error: Invalid letter provided.") // Should throw invalidLetterError here
             return []
         }
+        // MARK: - Export logic to private fucntions
         let letters = Array(allLetters[0..<index + 1])
-        var spaces = letters.count - 1
+        let spaces = letters.count * 2 - 1
+        var letterIndex = letters.count - 1
         var diamond = [String]()
-        print(spaces)
-        
+
         letters.forEach { letter in
-            let prefix = String(repeating: " ", count: spaces)
-            let suffix = String(repeating: " ", count: letters.count - spaces - 1)
-            var result = "\(prefix)\(letter)\(suffix)"
-            result = result + result.reversed()
-            diamond.append("\(result)")
-            spaces -= 1
+            var letterArray = Array(repeating: " " as Character, count: spaces)
+            letterArray[letterIndex] = letter
+            letterArray[letterArray.count - letterIndex - 1] = letter
+            diamond.append(String(letterArray))
+            letterIndex -= 1
         }
-        return diamond + diamond.reversed()
+        return diamond + diamond.reversed().dropFirst()
     }
 }
 
