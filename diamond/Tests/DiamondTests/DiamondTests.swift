@@ -3,7 +3,7 @@ import XCTest
 @testable import Diamond
 
 class DiamondTests: XCTestCase {
-  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "false"]) ?? false
+  let runAll = Bool(ProcessInfo.processInfo.environment["RUNALL", default: "true"]) ?? false
 
   func testDegenerateCaseWithASingleARow() {
     XCTAssertEqual(Diamond.makeDiamond(letter: "A"), ["A"])
