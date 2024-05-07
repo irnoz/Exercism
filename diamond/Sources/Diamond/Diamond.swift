@@ -31,12 +31,3 @@ class Diamond {
         return diamond + diamond.reversed().dropFirst()
     }
 }
-
-@main
-public class Main {
-    public static func main() {
-        let diamond = Diamond.makeDiamond(letter: "D")
-        print(diamond)
-        diamond.forEach { print($0) }
-    }
-}
