@@ -1,6 +1,3 @@
-import Foundation
-let allLetters = Set("qwertyuioplkjhgfdsazxcvbnm")
 func isPangram(_ text: String) -> Bool {
-    return allLetters.isSubset(of: text.lowercased())
-    
+    Set(text.lowercased().filter({$0 >= "a" && $0 <= "z"})).count == 26
 }
