@@ -1,0 +1,12 @@
+# Ignore compiled Vim script files
+*.vimc
+
+# Ignore backup files
+*~
+*.swp
+*.swo
+*.un~
+
+# Ignore plugin directories
+plugged/
+

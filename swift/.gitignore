@@ -1,0 +1,26 @@
+# Ignore build artifacts and generated files
+.build/
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+DerivedData/
+
+# Ignore compiled code
+*.o
+*.swiftdoc
+*.swiftsourceinfo
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Ignore test result files
+*.test
+*.gcno
+*.gcda
+*.gcov
+
+# Ignore package manager files
+Packages/
+.package/
+

@@ -1,0 +1,28 @@
+# Ignore build directories
+build/
+target/
+
+# Ignore Gradle files
+.gradle/
+build/
+
+# Ignore Gradle Wrapper files
+gradle/wrapper/gradle-wrapper.properties
+gradle/wrapper/gradle-wrapper.jar
+
+# Ignore temporary files
+*.class
+*.log
+
+# Ignore compiled JAR files
+*.jar
+*.war
+*.ear
+
+# Ignore IDE-specific files
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+

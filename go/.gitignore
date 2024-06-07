@@ -1,0 +1,18 @@
+# Ignore the Go workspace file
+go.work
+
+# Ignore binaries
+bin/
+*.exe
+*.out
+
+# Ignore test cache
+*.test
+
+# Ignore coverage reports
+*.cover
+*.cov
+
+# Ignore build directories
+build/
+
