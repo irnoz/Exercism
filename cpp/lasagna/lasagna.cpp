@@ -1,9 +1,9 @@
-int ovenTime() {
+int ovenTime(void) {
     return 40;
 }
 
 int remainingOvenTime(int actualMinutesInOven) {
-    return ovenTime() - actualMinutesInOven;
+    return ovenTime - actualMinutesInOven;
 }
 
 int preparationTime(int numberOfLayers) {

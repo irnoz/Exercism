@@ -1,22 +1,11 @@
-"
-" Convert a phrase into an uppercased acronym formed from
-" the initial letter of each word, ignoring leading underscores
-"
-" Examples:
-"
-"   :echo Abbreviate('First In, First Out')
-"   FIFO
-"
-"   :echo Abbreviate('The Road _Not_ Taken')
-"   TRNT
-"
-function! Abbreviate(phrase) abort
-	let words = split(a:phrase, '\v(\s|_|[^[:alnum:]])+')
+function! Abbreviate(name)
+	let words = split(a:name, '[- ]')
 	let abbreviation = ''
-	for word in words 
-		if len(word) > 0
-			let abbreviation .= toupper(strpart(word, 0, 1))
+	for word in words
+		let first_letter = matchstr(word, '\a')
+		if !empty(first_letter)
+			let abbreviation .= toupper(first_letter)
 		endif
 	endfor
-	return abbreviation	
-endfunction 
+	return abbreviation
+endfunction
